@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Book - The Empowerment Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #722F37 0%, #C49B9B 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(114, 47, 55, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(232, 204, 200, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #722F37 0%, #E8CCC8 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: float 25s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideUp 1s ease-out 0.2s backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Contact Info Section */
+        .contact-info-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: #C49B9B;
+        }
+
+        .contact-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .contact-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-detail {
+            font-size: 1.2rem;
+            color: #C49B9B;
+            font-weight: bold;
+        }
+
+        /* Booking Form Section */
+        .booking-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .booking-header {
+            background: linear-gradient(135deg, #722F37, #C49B9B);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .booking-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .booking-header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .booking-form {
+            padding: 3rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #C49B9B;
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .service-option {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-option:hover,
+        .service-option.selected {
+            border-color: #C49B9B;
+            background: rgba(255, 107, 157, 0.1);
+        }
+
+        .service-option input[type="radio"] {
+            display: none;
+        }
+
+        .service-option label {
+            cursor: pointer;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .service-price {
+            color: #C49B9B;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, #E8CCC8, #C49B9B);
+            color: #5A252A;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: slideUp 1s ease-out 0.4s backwards;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .action-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #C49B9B;
+        }
+
+        .action-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .action-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .action-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-button {
+            background: #C49B9B;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            background: #722F37;
+            transform: translateY(-2px);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            background: #C49B9B;
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .faq-question:hover {
+            background: #722F37;
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(114, 47, 55, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                backdrop-filter: blur(20px);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-grid,
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-form {
+                padding: 2rem;
+            }
+
+            .booking-header {
+                padding: 2rem;
+            }
+
+            .booking-header h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav class="container">
+            <a href="index.html" class="logo">The Empowerment Studio</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="schedules.html">Schedules</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu" id="mobileMenu">☰</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Contact & Book Your Session</h1>
+                <p>Ready to celebrate your strength and beauty? Let's create powerful imagery that tells your unique story</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-info-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #333;">Get In Touch</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email Us</h3>
+                    <p>Send us a message anytime and we'll get back to you within 24 hours</p>
+                    <div class="contact-detail">theempowermentp@gmail.com</div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Call or Text</h3>
+                    <p>Prefer to talk? Give us a call or send a text message</p>
+                    <div class="contact-detail">(816) 999-7967</div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Visit Our Studio</h3>
+                    <p>Come see our beautiful studio space in person</p>
+                    <div class="contact-detail">Professional Studio Space<br>Available by Appointment</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-container">
+                <div class="booking-header">
+                    <h2>Book Your Session</h2>
+                    <p>Fill out the form below and we'll contact you within 24 hours to schedule your empowerment session</p>
+                </div>
+                
+                <form class="booking-form" id="bookingForm">
+                    <div class="success-message" id="successMessage">
+                        Thank you for your booking request! We'll contact you within 24 hours to confirm your session details.
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Your Session Type *</label>
+                        <div class="service-grid">
+                            <div class="service-option">
+                                <input type="radio" id="empowerment" name="sessionType" value="empowerment" required>
+                                <label for="empowerment">
+                                    Confidence Boost
+                                    <div class="service-price">$245 (30% OFF)</div>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="radio" id="boudoir" name="sessionType" value="boudoir" required>
+                                <label for="boudoir">
+                                    Self-Love Boudoir
+                                    <div class="service-price">$450</div>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="radio" id="branding" name="sessionType" value="branding" required>
+                                <label for="branding">
+                                    Boss Lady Branding
+                                    <div class="service-price">$275</div>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="radio" id="family" name="sessionType" value="family" required>
+                                <label for="family">
+                                    Generations Package
+                                    <div class="service-price">$320</div>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="radio" id="milestone" name="sessionType" value="milestone" required>
+                                <label for="milestone">
+                                    Achievement Session
+                                    <div class="service-price">$325</div>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="radio" id="transformation" name="sessionType" value="transformation" required>
+                                <label for="transformation">
+                                    Transformation Journey
+                                    <div class="service-price">$550</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="preferredDate">Preferred Date</label>
+                            <input type="date" id="preferredDate" name="preferredDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredTime">Preferred Time</label>
+                            <select id="preferredTime" name="preferredTime">
+                                <option value="">Select a time</option>
+                                <option value="morning">Morning (9 AM - 12 PM)</option>
+                                <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+                                <option value="evening">Evening (5 PM - 8 PM)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Photography Experience</label>
+                        <select id="experience" name="experience">
+                            <option value="">Select your experience level</option>
+                            <option value="first-time">This is my first professional session</option>
+                            <option value="some">I've had a few professional sessions</option>
+                            <option value="experienced">I'm comfortable with professional photography</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goals">Session Goals & Vision</label>
+                        <textarea id="goals" name="goals" placeholder="Tell us what you hope to achieve with your session. What story do you want to tell? Any specific looks or feelings you want to capture?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="questions">Questions or Special Requests</label>
+                        <textarea id="questions" name="questions" placeholder="Any questions about the session, special accommodations needed, or additional services you're interested in?"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Booking Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="quick-actions">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #333;">Quick Actions</h2>
+            
+            <div class="actions-grid">
+                <div class="action-card">
+                    <div class="action-icon">📅</div>
+                    <h4>View Class Schedule</h4>
+                    <p>Check out our dance class schedule and find the perfect class for you</p>
+                    <a href="schedules.html" class="action-button">View Schedule</a>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">📦</div>
+                    <h4>Browse Packages</h4>
+                    <p>Explore our photography packages and find the perfect fit for your needs</p>
+                    <a href="packages.html" class="action-button">View Packages</a>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">🎨</div>
+                    <h4>See Our Work</h4>
+                    <p>Browse our portfolio to see examples of our empowering photography</p>
+                    <a href="portfolio.html" class="action-button">View Portfolio</a>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">🏢</div>
+                    <h4>Rent Studio Space</h4>
+                    <p>Book our professional studio for your events, workshops, or projects</p>
+                    <a href="schedules.html" class="action-button">Rent Studio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #333;">Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">What should I wear to my session?</div>
+                    <div class="faq-answer">
+                        <p>We provide styling guidance for every session! Generally, wear something that makes you feel confident and comfortable. Avoid busy patterns and bring multiple outfit options. We'll discuss specific recommendations based on your chosen session type.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How long will my session take?</div>
+                    <div class="faq-answer">
+                        <p>Session lengths vary by package: Confidence Boost (1 hour), Boudoir (2 hours), Branding (1.5 hours), Family (1 hour), Achievement (1.5 hours), and Transformation (multiple sessions). We never rush your experience!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">When will I receive my photos?</div>
+                    <div class="faq-answer">
+                        <p>You'll receive your edited photos within 2-3 weeks of your session via an online gallery. Rush delivery is available for an additional fee if you need them sooner for a special event.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I bring someone with me?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely! You're welcome to bring a friend or family member for support. For boudoir sessions, we recommend limiting guests to maintain the intimate atmosphere, but the choice is always yours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer payment plans?</div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer flexible payment options including payment plans. A 50% deposit secures your session date, with the balance due at your session. Contact us to discuss options that work for your budget.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What if I need to reschedule?</div>
+                    <div class="faq-answer">
+                        <p>Life happens! You can reschedule your session up to 48 hours before your appointment without penalty. Last-minute cancellations may incur a rescheduling fee, but we'll always work with you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 The Empowerment Studio. All rights reserved. | 📧 theempowermentp@gmail.com | 📱 (816) 999-7967</p>
+        </div>
+    </footer>
+
+    <script>
+        // Service option selection
+        document.querySelectorAll('.service-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                option.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+            
+            // Scroll to success message
+            document.getElementById('successMessage').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+            
+            // Reset form after a delay
+            setTimeout(() => {
+                this.reset();
+                document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+                document.getElementById('successMessage').classList.remove('show');
+            }, 5000);
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.remove('active'));
+                
+                // Toggle current item
+                if (!isActive) {
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for internal anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.contact-card, .action-card, .faq-item').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Set minimum date to today
+        document.getElementById('preferredDate').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>
