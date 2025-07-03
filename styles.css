@@ -1,0 +1,921 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fafafa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c2c2c;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #666;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-img {
+    height: 90px;
+    width: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 3px 10px rgba(212, 165, 116, 0.4));
+}
+
+.logo-img:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 5px 15px rgba(212, 165, 116, 0.6));
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #2c2c2c;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #D4A574;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: #2c2c2c;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    position: relative;
+    padding-top: 80px;
+}
+
+.hero-content {
+    flex: 1;
+    padding: 2rem;
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: #2c2c2c;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.hero-image {
+    flex: 1;
+    height: 100vh;
+    background: url('images/studio-front-space.jpg') center/cover;
+    position: relative;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(212, 165, 116, 0.3), rgba(212, 165, 116, 0.1));
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #D4A574, #C19A5B);
+    color: white;
+    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #2c2c2c;
+    border: 2px solid #2c2c2c;
+}
+
+.btn-secondary:hover {
+    background: #2c2c2c;
+    color: white;
+}
+
+/* Empowerment Section */
+.empowerment-section {
+    padding: 5rem 0;
+    background: white;
+    text-align: center;
+}
+
+.empowerment-section .section-title {
+    color: #D4A574;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Services Section */
+.services-section {
+    padding: 5rem 0;
+    background: #f8f8f8;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.service-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.photography-icon {
+    background: linear-gradient(135deg, #D4A574, #C19A5B);
+    position: relative;
+}
+
+.photography-icon::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.photography-icon::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 8px;
+    background: white;
+    border-radius: 2px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dance-icon {
+    background: linear-gradient(135deg, #D4A574, #C19A5B);
+    position: relative;
+}
+
+.dance-icon::before {
+    content: '';
+    position: absolute;
+    width: 45px;
+    height: 54px;
+    background-image: url('images/chairdancer.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(0) invert(1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dance-icon::after {
+    display: none;
+}
+
+.studio-icon {
+    background: linear-gradient(135deg, #D4A574, #C19A5B);
+    position: relative;
+}
+
+.studio-icon::before {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 25px;
+    border: 3px solid white;
+    border-radius: 3px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.studio-icon::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2c2c2c;
+}
+
+.service-card p {
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.service-list {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.service-list li {
+    padding: 0.5rem 0;
+    color: #555;
+    border-bottom: 1px solid #eee;
+}
+
+.service-list li:last-child {
+    border-bottom: none;
+}
+
+.service-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #D4A574;
+    background: linear-gradient(135deg, #D4A574, #C19A5B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Classes Section */
+.classes-section {
+    padding: 5rem 0;
+    background: white;
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.schedule-card {
+    background: linear-gradient(135deg, #f8f8f8, #f0f0f0);
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 4px solid #D4A574;
+    transition: transform 0.3s ease;
+}
+
+.schedule-card:hover {
+    transform: translateY(-3px);
+}
+
+.schedule-day {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #D4A574;
+    margin-bottom: 0.5rem;
+}
+
+.schedule-time {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.schedule-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #2c2c2c;
+}
+
+.schedule-card p {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.schedule-description {
+    font-style: italic;
+    color: #555;
+}
+
+.schedule-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.schedule-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #D4A574;
+}
+
+.schedule-level {
+    background: #2c2c2c;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.featured-class {
+    border: 2px solid #D4A574;
+    background: linear-gradient(135deg, #fff, #fefefe);
+    position: relative;
+}
+
+.featured-class::before {
+    content: 'FEATURED';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #D4A574, #C19A5B);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.pricing-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.schedule-price-alt {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+}
+
+/* Gallery Section */
+.gallery-section {
+    padding: 5rem 0;
+    background: #f8f8f8;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.gallery-item {
+    position: relative;
+    height: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 2rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.placeholder {
+    background: linear-gradient(135deg, #D4A574, #C19A5B);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-content {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Our Photographer Section */
+.our-photographer-section {
+    padding: 5rem 0;
+    background: #f8f8f8;
+}
+
+.our-photographer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.our-photographer-image {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.sarah-photographer-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.our-photographer-info h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #2c2c2c;
+}
+
+.photographer-title {
+    font-size: 1.2rem;
+    color: #D4A574;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.photographer-description {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.sarah-services {
+    margin-bottom: 2rem;
+}
+
+.sarah-services h4 {
+    font-size: 1.1rem;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+}
+
+.service-pricing {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #D4A574;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.price-item:last-child {
+    border-bottom: none;
+}
+
+.service-name {
+    color: #2c2c2c;
+    font-weight: 500;
+}
+
+.service-price {
+    color: #D4A574;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.sarah-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sarah-contact .contact-item {
+    color: #555;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Photographers Section */
+.photographers-section {
+    padding: 5rem 0;
+    background: white;
+}
+
+.photographers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.photographer-card {
+    background: #f8f8f8;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.photographer-card:hover {
+    transform: translateY(-5px);
+}
+
+.photographer-image {
+    height: 200px;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.photographer-placeholder {
+    background: linear-gradient(135deg, #D4A574, #C19A5B);
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.photographer-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+    background: white;
+}
+
+.photographer-info {
+    padding: 1.5rem;
+}
+
+.photographer-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #2c2c2c;
+}
+
+.photographer-specialty {
+    color: #666;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.photographer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.photographer-contact .contact-item {
+    color: #555;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-label {
+    font-weight: 600;
+    color: #D4A574;
+    min-width: 70px;
+}
+
+.photographer-contact a {
+    color: #2c2c2c;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.photographer-contact a:hover {
+    color: #D4A574;
+    text-decoration: underline;
+}
+
+/* About Section */
+.about-section {
+    padding: 5rem 0;
+    background: #f8f8f8;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    color: #666;
+    line-height: 1.7;
+}
+
+.about-highlight {
+    background: linear-gradient(135deg, #D4A574, #C19A5B);
+    padding: 2rem;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+}
+
+.about-highlight h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 5rem 0;
+    background: #f8f8f8;
+}
+
+.contact-info-centered {
+    max-width: 600px;
+    margin: 3rem auto 0;
+    text-align: center;
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info-centered .contact-item {
+    margin-bottom: 1.5rem;
+    color: #555;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.contact-info-centered .contact-label {
+    font-weight: 600;
+    color: #D4A574;
+    font-size: 1rem;
+}
+
+.contact-cta {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #D4A574;
+}
+
+.contact-cta p {
+    color: #666;
+    font-size: 1.1rem;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Footer */
+.footer {
+    background: #2c2c2c;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+.footer-text p {
+    margin-bottom: 0.5rem;
+    color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-image {
+        height: 300px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .schedule-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .our-photographer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .photographers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .service-card,
+    .schedule-card {
+        padding: 1.5rem;
+    }
+    
+    .nav {
+        padding: 1rem;
+    }
+    
+    .logo-img {
+        height: 50px;
+    }
+}

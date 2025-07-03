@@ -1,8 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep:*)",
-      "Bash(rg:*)"
+      "WebFetch(domain:www.facebook.com)",
+      "WebFetch(domain:audralucasfinelightphotography.mypixieset.com)",
+      "Bash(cp:*)",
+      "Bash(convert:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }

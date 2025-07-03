@@ -1,0 +1,40 @@
+<svg width="100" height="120" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chair Dance Silhouette -->
+  <g fill="#000000">
+    <!-- Head -->
+    <circle cx="65" cy="15" r="8"/>
+    <!-- Hair/ponytail -->
+    <ellipse cx="72" cy="12" rx="3" ry="6" transform="rotate(20 72 12)"/>
+    
+    <!-- Torso -->
+    <path d="M58 25 Q55 30 57 45 Q58 50 62 52 Q66 50 67 45 Q69 30 66 25 Q62 22 58 25"/>
+    
+    <!-- Arms -->
+    <!-- Right arm (dancer's right, on chair) -->
+    <path d="M67 35 Q75 38 82 45 Q85 48 83 52 Q80 50 75 47 Q70 42 67 40"/>
+    <!-- Left arm extended -->
+    <path d="M57 35 Q50 32 42 35 Q38 37 40 40 Q45 38 52 40 Q57 38 57 35"/>
+    
+    <!-- Legs -->
+    <!-- Right leg (sitting) -->
+    <path d="M60 52 Q58 60 62 70 Q65 75 70 78 Q75 80 78 85 Q80 90 77 92 Q72 90 68 85 Q63 80 60 75 Q58 65 60 52"/>
+    <!-- Left leg (extended) -->
+    <path d="M64 52 Q68 60 75 68 Q80 75 85 80 Q90 85 92 90 Q88 92 82 88 Q75 82 70 75 Q65 68 64 60 Q64 55 64 52"/>
+    
+    <!-- Chair legs -->
+    <rect x="70" y="78" width="2" height="25"/>
+    <rect x="75" y="78" width="2" height="25"/>
+    <rect x="80" y="78" width="2" height="25"/>
+    <rect x="85" y="78" width="2" height="25"/>
+    
+    <!-- Chair seat -->
+    <ellipse cx="78" cy="78" rx="8" ry="3"/>
+    
+    <!-- Chair back -->
+    <rect x="85" y="65" width="2" height="13"/>
+    
+    <!-- High heel shoes -->
+    <path d="M77 90 Q79 92 82 91 Q84 90 83 88 Q81 87 78 88 Q77 89 77 90"/>
+    <path d="M87 88 Q89 90 92 89 Q94 88 93 86 Q91 85 88 86 Q87 87 87 88"/>
+  </g>
+</svg>
