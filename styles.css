@@ -809,6 +809,30 @@ h1, h2, h3 {
     margin: 0;
 }
 
+.contact-info-centered a {
+    color: #D4A574;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.contact-info-centered a:hover {
+    color: #C19A5B;
+    text-decoration: underline;
+}
+
+.sarah-contact a {
+    color: #D4A574;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.sarah-contact a:hover {
+    color: #C19A5B;
+    text-decoration: underline;
+}
+
 /* Footer */
 .footer {
     background: #2c2c2c;
