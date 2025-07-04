@@ -12,6 +12,16 @@ body {
     background-color: #fafafa;
 }
 
+a {
+    color: #D4A574;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #C19A5B;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
