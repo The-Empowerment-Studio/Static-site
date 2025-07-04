@@ -215,6 +215,29 @@ h1, h2, h3 {
     margin-bottom: 1.5rem;
 }
 
+/* Our Story Section */
+.our-story-section {
+    padding: 5rem 0;
+    background: #f8f8f8;
+}
+
+.story-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.story-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.story-content p:last-child {
+    margin-bottom: 0;
+}
+
 /* Services Section */
 .services-section {
     padding: 5rem 0;
