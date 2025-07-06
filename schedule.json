@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Werq Classes",
+    "instructorName": "Amber Elliot",
+    "dayOfWeek": "Tuesday",
+    "startTime": "18:00",
+    "endTime": "19:00",
+    "description": "High-energy dance fitness classes combining hip hop, jazz, and contemporary movements. Starting August 5th.",
+    "price": 20,
+    "minimumAgeLimit": "18+",
+    "startDate": "2025-08-01"
+  },
+  {
+    "id": 2,
+    "title": "Empowerment Yoga",
+    "instructorName": "Kristin Dragonmother Smith",
+    "dayOfWeek": "Wednesday",
+    "startTime": "18:30",
+    "endTime": "19:30",
+    "description": "Yoga practice designed to build strength, flexibility, and inner confidence.",
+    "price": 20,
+    "minimumAgeLimit": "18+",
+    "startDate": "2025-08-01"
+  },
+  {
+    "id": 3,
+    "title": "Thursday Night Chair Class",
+    "instructorName": "Schyler Rizzo",
+    "dayOfWeek": "Thursday",
+    "startTime": "18:00",
+    "endTime": "19:00",
+    "description": "Come join other ladies for a fun fitness class. Have fun and feel sexy!",
+    "price": 20,
+    "minimumAgeLimit": "18+",
+    "startDate": "2025-07-06"
+  }
+]

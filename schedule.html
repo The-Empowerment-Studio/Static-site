@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Schedule - The Empowerment Studio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">
+          <img
+            src="images/logo.png"
+            alt="The Empowerment Studio"
+            class="logo-img"
+          />
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="schedule.html">Classes</a></li>
+          <li><a href="index.html#gallery">Gallery</a></li>
+          <li><a href="index.html#our-photographer">Photographers</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="schedule-header">
+        <div class="container">
+          <h1 class="section-title">Dance Class Schedule</h1>
+          <p class="section-subtitle">
+            All classes are ladies only unless otherwise specified. Join our
+            supportive community of women!
+          </p>
+        </div>
+      </section>
+
+      <section class="calendar-section">
+        <div class="container">
+          <div class="calendar-controls">
+            <button class="btn btn-secondary" id="prevMonth">Previous</button>
+            <h2 class="calendar-month" id="currentMonth"></h2>
+            <button class="btn btn-secondary" id="nextMonth">Next</button>
+          </div>
+          
+          <div class="calendar-container">
+            <div class="calendar-grid" id="calendar">
+              <!-- Calendar will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <div class="mobile-week-view" id="mobileWeekView">
+            <div class="week-controls">
+              <button class="btn btn-secondary" id="prevWeek">Previous Week</button>
+              <h3 class="week-title" id="currentWeek"></h3>
+              <button class="btn btn-secondary" id="nextWeek">Next Week</button>
+            </div>
+            <div class="week-classes" id="weekClasses">
+              <!-- Week classes will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="class-details-section">
+        <div class="container">
+          <h2 class="section-title">Class Details</h2>
+          <div class="class-details-grid" id="classDetails">
+            <!-- Class details will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-text">
+            <p>&copy; 2025 The Empowerment Studio LLC. All rights reserved.</p>
+            <p>Celebrating women through powerful photography & movement</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+// Mobile Navigation Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    navToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+        });
+    });
+});
+
+// Header Background on Scroll
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 100) {
+        header.style.background = 'rgba(255, 255, 255, 0.98)';
+    } else {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+    }
+});
+    </script>
+    <script src="schedule.js"></script>
+  </body>
+</html>
