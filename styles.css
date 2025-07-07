@@ -1420,6 +1420,33 @@ h1, h2, h3 {
     .class-details-grid {
         grid-template-columns: 1fr;
     }
+    
+    /* Mobile week navigation improvements */
+    .week-controls {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    .week-title {
+        width: 100%;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    
+    .week-buttons {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .week-buttons .btn {
+        flex: 1;
+        max-width: 150px;
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
