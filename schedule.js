@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((response) => response.json())
     .then((data) => {
       classes = data;
+      console.log("Loaded classes:", classes);
       renderCalendar();
-      renderClassDetails();
       renderWeekView();
     })
     .catch((error) => {
@@ -117,44 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function renderClassDetails() {
-    const classDetails = document.getElementById("classDetails");
-    classDetails.innerHTML = "";
-
-    classes.forEach((classInfo) => {
-      const classCard = document.createElement("div");
-      classCard.className = "class-detail-card";
-
-      const startDate = classInfo.startDate
-        ? new Date(classInfo.startDate)
-        : null;
-      let scheduleText = `${classInfo.dayOfWeek}s at ${formatTime(
-        classInfo.startTime
-      )} - ${formatTime(classInfo.endTime)}`;
-      let startText = startDate
-        ? `Classes started ${formatDate(startDate)}`
-        : "";
-
-      classCard.innerHTML = `
-                <div class="class-detail-header">
-                    <div>
-                        <div class="class-detail-title">${classInfo.title}</div>
-                        <div class="class-detail-instructor">with ${classInfo.instructorName}</div>
-                        <div class="class-detail-schedule">${scheduleText}</div>
-                    </div>
-                    <div class="class-detail-price">$${classInfo.price}</div>
-                </div>
-                <div class="class-detail-description">${classInfo.description}</div>
-                <div class="class-detail-footer">
-                    <div class="class-detail-age">${classInfo.minimumAgeLimit}</div>
-                    <div class="class-detail-start">${startText}</div>
-                </div>
-            `;
-
-      classDetails.appendChild(classCard);
-    });
-  }
-
   function renderWeekView() {
     // Get current week start (Monday)
     if (!currentWeekStart) {
@@ -233,23 +195,66 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function compareDates(date1, date2) {
+    // Compare two dates without time
+    const d1 = new Date(date1);
+    const d2 = new Date(date2);
+    d1.setHours(0, 0, 0, 0);
+    d2.setHours(0, 0, 0, 0);
+    if (d1.getTime() === d2.getTime()) {
+      return true;
+    }
+    return false;
+  }
+
+  function isProduction() {
+    // Check if the current environment is production
+    return /empowerment-studio/i.test(window.location.hostname);
+  }
+
+  function shouldShowClass(classInfo, dayOfWeek, date) {
+    if (classInfo.test && isProduction()) {
+      // If the class is marked as test and we're in production then don't show it
+      return false;
+    }
+    if (classInfo && classInfo.classDate) {
+      //classDate = new Date(classInfo.classDate);
+      if (compareDates(classInfo.classDate + "T00:00:00", date)) {
+        return true;
+      }
+    }
+
+    if (classInfo.dayOfWeek === dayOfWeek) {
+      // Only show classes that have started
+      if (classInfo.startDate) {
+        const startDate = new Date(classInfo.startDate);
+        startDate.setHours(0, 0, 0, 0);
+
+        const checkDate = new Date(date);
+        checkDate.setHours(0, 0, 0, 0);
+
+        if (checkDate >= startDate) {
+          if (classInfo.endDate) {
+            const endDate = new Date(classInfo.endDate);
+            endDate.setHours(0, 0, 0, 0);
+            if (checkDate > endDate) {
+              return false;
+            }
+          }
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   function getClassesForDay(dayOfWeek, date) {
     const classesForDay = [];
 
     classes.forEach((classInfo) => {
-      if (classInfo.dayOfWeek === dayOfWeek && !classInfo.classDate) {
-        // Only show classes that have started
-        if (classInfo.startDate) {
-          const startDate = new Date(classInfo.startDate);
-          startDate.setHours(0, 0, 0, 0);
-
-          const checkDate = new Date(date);
-          checkDate.setHours(0, 0, 0, 0);
-
-          if (checkDate >= startDate) {
-            classesForDay.push(classInfo);
-          }
-        }
+      // Check if the class matches the day of the week and
+      if (shouldShowClass(classInfo, dayOfWeek, date) === true) {
+        classesForDay.push(classInfo);
       }
     });
 
