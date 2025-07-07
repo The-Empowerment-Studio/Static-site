@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((response) => response.json())
     .then((data) => {
       classes = data;
-      console.log("Loaded classes:", classes);
       renderCalendar();
       renderWeekView();
     })
@@ -110,6 +109,15 @@ document.addEventListener("DOMContentLoaded", function () {
                       classInfo.instructorName
                     }</div>
                 `;
+
+        // Add click event for desktop modal (only on desktop)
+        if (window.innerWidth > 768) {
+          classElement.style.cursor = "pointer";
+          classElement.addEventListener("click", () => {
+            openModal(classInfo, dayDate);
+          });
+        }
+
         dayElement.appendChild(classElement);
       });
 
@@ -138,7 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const weekClassesData = [];
     for (let i = 0; i < 7; i++) {
       const currentDay = new Date(weekStart);
-      console.log("Check date: ", currentDay);
       currentDay.setDate(currentDay.getDate() + i);
 
       const dayOfWeek = getDayName(currentDay);
@@ -309,5 +316,60 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("nextWeek")?.addEventListener("click", () => {
     currentWeekStart.setDate(currentWeekStart.getDate() + 7);
     renderWeekView();
+  });
+
+  // Modal functionality
+  function openModal(classInfo, date) {
+    const modal = document.getElementById("classModal");
+    const modalTitle = document.querySelector(".modal-title");
+    const modalInstructor = document.querySelector(".modal-instructor");
+    const modalSchedule = document.querySelector(".modal-schedule");
+    const modalDescription = document.querySelector(".modal-description");
+    const modalPrice = document.querySelector(".modal-price");
+    const modalAge = document.querySelector(".modal-age");
+
+    // Populate modal content
+    modalTitle.textContent = classInfo.title;
+    modalInstructor.textContent = `with ${classInfo.instructorName}`;
+    modalSchedule.textContent = `${getDayName(date)}, ${formatTime(
+      classInfo.startTime
+    )} - ${formatTime(classInfo.endTime)}`;
+    modalDescription.textContent = classInfo.description;
+    modalPrice.textContent = `$${classInfo.price}`;
+    modalAge.textContent = classInfo.minimumAgeLimit;
+
+    // Show modal
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+  }
+
+  function closeModal() {
+    const modal = document.getElementById("classModal");
+    modal.style.display = "none";
+    document.body.style.overflow = "auto"; // Restore scrolling
+  }
+
+  // Close modal when clicking the X
+  document.querySelector(".modal-close")?.addEventListener("click", closeModal);
+
+  // Close modal when clicking outside
+  document.getElementById("classModal")?.addEventListener("click", (e) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
+
+  // Update modal behavior on window resize
+  window.addEventListener("resize", () => {
+    if (window.innerWidth <= 768) {
+      closeModal(); // Close modal if switched to mobile
+    }
   });
 });
