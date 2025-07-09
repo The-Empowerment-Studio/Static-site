@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - The Empowerment Studio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .gallery-page {
+        padding: 6rem 0 3rem;
+      }
+      
+      #album-view {
+        padding-top: 2rem;
+      }
+      
+      #album-list {
+        padding-top: 2rem;
+      }
+
+      .album-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .album-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .album-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .album-cover {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .album-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .album-cover:hover img {
+        transform: scale(1.05);
+      }
+
+      .album-info {
+        padding: 1.5rem;
+      }
+
+      .album-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: #2c2c2c;
+        margin-bottom: 0.5rem;
+      }
+
+      .album-date {
+        color: #d4a574;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .album-description {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .album-count {
+        color: #999;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .album-btn {
+        display: inline-block;
+        background: #d4a574;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background 0.3s ease;
+      }
+
+      .album-btn:hover {
+        background: #c19660;
+      }
+
+      .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .image-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        aspect-ratio: 1;
+        cursor: pointer;
+      }
+
+      .image-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .image-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+      }
+
+      .modal.open {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: #000000;
+        max-width: 100vw;
+        max-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content img {
+        max-width: 100vw;
+        max-height: 100vh;
+        object-fit: contain;
+        display: block;
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close:hover {
+        color: #d4a574;
+      }
+
+      .back-btn {
+        margin-bottom: 2rem;
+        display: inline-block;
+        color: #d4a574;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        border: 2px solid #d4a574;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .back-btn:hover {
+        color: #fff;
+        background-color: #d4a574;
+        border-color: #d4a574;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">
+          <img
+            src="images/logo.png"
+            alt="The Empowerment Studio"
+            class="logo-img"
+          />
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="schedule.html">Classes</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="index.html#our-photographer">Photographers</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <main class="gallery-page">
+      <div class="container">
+        <div id="album-list">
+          <h1 class="section-title">Photography Gallery</h1>
+          <p class="section-subtitle">
+            Explore our collection of empowering photography sessions showcasing
+            the strength and beauty of women.
+          </p>
+          <div class="album-grid" id="albums-container">
+            <!-- Albums will be loaded here -->
+          </div>
+        </div>
+
+        <div id="album-view" class="hidden">
+          <h1 id="album-title" class="section-title"></h1>
+          <div id="album-details">
+            <p id="album-date" class="album-date"></p>
+            <p id="album-description" class="album-description"></p>
+            <a href="#" class="back-btn" onclick="showAlbumList()"
+              >&larr; Back to Albums</a
+            >
+          </div>
+          <div class="image-gallery" id="images-container">
+            <!-- Images will be loaded here -->
+          </div>
+          <div style="text-align: center; margin-top: 3rem;">
+            <a href="#" class="back-btn" onclick="showAlbumList()"
+              >&larr; Back to Albums</a
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="imageModal" class="modal">
+      <span class="close">&times;</span>
+      <div class="modal-content">
+        <img id="modal-image" src="" alt="" />
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-text">
+            <p>&copy; 2025 The Empowerment Studio LLC. All rights reserved.</p>
+            <p>Celebrating women through powerful photography & movement</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      let galleryData = {};
+
+      // Load gallery data
+      fetch("gallery.json")
+        .then((response) => response.json())
+        .then((data) => {
+          galleryData = data;
+          displayAlbums();
+        })
+        .catch((error) => {
+          console.error("Error loading gallery data:", error);
+        });
+
+      function displayAlbums() {
+        const albumsContainer = document.getElementById("albums-container");
+        albumsContainer.innerHTML = "";
+
+        galleryData.albums.forEach((album) => {
+          const albumCard = document.createElement("div");
+          albumCard.className = "album-card";
+          albumCard.style.cursor = "pointer";
+          albumCard.onclick = () => showAlbum(album.id);
+          albumCard.innerHTML = `
+            <div class="album-cover">
+              <img src="${album.images[0]}" alt="${album.name}" onerror="this.src='images/placeholder.jpg'">
+            </div>
+            <div class="album-info">
+              <h3 class="album-title">${album.name}</h3>
+              <p class="album-date">Shot on ${album.shootDate}</p>
+              <p class="album-description">${album.description}</p>
+              <p class="album-count">${album.images.length} images</p>
+              <a href="#" class="album-btn" onclick="event.stopPropagation(); showAlbum('${album.id}')">View Album</a>
+            </div>
+          `;
+          albumsContainer.appendChild(albumCard);
+        });
+      }
+
+      function showAlbum(albumId) {
+        const album = galleryData.albums.find((a) => a.id === albumId);
+        if (!album) return;
+
+        document.getElementById("album-list").classList.add("hidden");
+        document.getElementById("album-view").classList.remove("hidden");
+
+        document.getElementById("album-title").textContent = album.name;
+        document.getElementById(
+          "album-date"
+        ).textContent = `Shot on ${album.shootDate}`;
+        document.getElementById("album-description").textContent =
+          album.description;
+
+        const imagesContainer = document.getElementById("images-container");
+        imagesContainer.innerHTML = "";
+
+        album.images.forEach((imagePath) => {
+          const imageItem = document.createElement("div");
+          imageItem.className = "image-item";
+          imageItem.innerHTML = `
+            <img src="${imagePath}" alt="${album.name}" onclick="openModal('${imagePath}')" onerror="this.src='images/placeholder.jpg'">
+          `;
+          imagesContainer.appendChild(imageItem);
+        });
+      }
+
+      function showAlbumList() {
+        document.getElementById("album-view").classList.add("hidden");
+        document.getElementById("album-list").classList.remove("hidden");
+      }
+
+      function openModal(imagePath) {
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modal-image");
+        modal.classList.add("open");
+        modalImage.src = imagePath;
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.classList.remove("open");
+      }
+
+      // Close modal
+      document.querySelector(".close").onclick = closeModal;
+
+      // Close modal when clicking outside
+      window.onclick = function (event) {
+        const modal = document.getElementById("imageModal");
+        if (event.target === modal) {
+          closeModal();
+        }
+      };
+    </script>
+  </body>
+</html>

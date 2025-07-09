@@ -1,0 +1,34 @@
+{
+  "albums": [
+    {
+      "id": "dark_boudoir",
+      "name": "Dark Boudoir",
+      "shootDate": "07/05/2025",
+      "description": "Intimate and artistic boudoir photography featuring dramatic lighting, shadows, and elegant poses. This collection captures the essence of feminine confidence and empowerment through sophisticated imagery.",
+      "images": [
+        "gallery/dark_boudoir/IMG_20250708_112344.jpg",
+        "gallery/dark_boudoir/IMG_20250708_112407 (1).jpg",
+        "gallery/dark_boudoir/IMG_20250708_112407 (2).jpg",
+        "gallery/dark_boudoir/IMG_20250708_112407 (3).jpg",
+        "gallery/dark_boudoir/IMG_20250708_112407 (4).jpg",
+        "gallery/dark_boudoir/IMG_20250708_112407 (5).jpg"
+      ]
+    },
+    {
+      "id": "pinnup",
+      "name": "Pin-Up",
+      "shootDate": "06/28/2025",
+      "description": "Classic pin-up photography with vintage charm and modern flair. This collection showcases bold poses, vibrant colors, and timeless beauty inspired by the golden age of photography.",
+      "images": [
+        "gallery/pinnup/IMG_20250708_112407 (6).jpg",
+        "gallery/pinnup/IMG_20250708_112407 (7).jpg",
+        "gallery/pinnup/IMG_20250708_112407 (8).jpg",
+        "gallery/pinnup/IMG_20250708_112407 (9).jpg",
+        "gallery/pinnup/IMG_20250708_112407 (10).jpg",
+        "gallery/pinnup/IMG_20250708_112407 (11).jpg",
+        "gallery/pinnup/IMG_20250708_112407 (12).jpg",
+        "gallery/pinnup/IMG_20250708_112407 (13).jpg"
+      ]
+    }
+  ]
+}
