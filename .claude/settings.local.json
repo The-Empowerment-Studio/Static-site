@@ -8,7 +8,10 @@
       "Bash(mv:*)",
       "Bash(rm:*)",
       "Bash(grep:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(for f in *.jpg)",
+      "Bash(do convert \"$f\" -resize 2048x2048> \"$f\")",
+      "Bash(done)"
     ],
     "deny": []
   }
