@@ -1,34 +1,19 @@
 {
-  "albums": [
-    {
-      "id": "dark_boudoir",
-      "name": "Dark Boudoir",
-      "shootDate": "07/05/2025",
-      "description": "Intimate and artistic boudoir photography featuring dramatic lighting, shadows, and elegant poses. This collection captures the essence of feminine confidence and empowerment through sophisticated imagery.",
-      "images": [
-        "gallery/dark_boudoir/IMG_20250708_112344.jpg",
-        "gallery/dark_boudoir/IMG_20250708_112407_1.jpg",
-        "gallery/dark_boudoir/IMG_20250708_112407_2.jpg",
-        "gallery/dark_boudoir/IMG_20250708_112407_3.jpg",
-        "gallery/dark_boudoir/IMG_20250708_112407_4.jpg",
-        "gallery/dark_boudoir/IMG_20250708_112407_5.jpg"
-      ]
-    },
-    {
-      "id": "pinnup",
-      "name": "Pin-Up",
-      "shootDate": "06/28/2025",
-      "description": "Classic pin-up photography with vintage charm and modern flair. This collection showcases bold poses, vibrant colors, and timeless beauty inspired by the golden age of photography.",
-      "images": [
-        "gallery/pinnup/IMG_20250708_112407_6.jpg",
-        "gallery/pinnup/IMG_20250708_112407_7.jpg",
-        "gallery/pinnup/IMG_20250708_112407_8.jpg",
-        "gallery/pinnup/IMG_20250708_112407_9.jpg",
-        "gallery/pinnup/IMG_20250708_112407_10.jpg",
-        "gallery/pinnup/IMG_20250708_112407_11.jpg",
-        "gallery/pinnup/IMG_20250708_112407_12.jpg",
-        "gallery/pinnup/IMG_20250708_112407_13.jpg"
-      ]
-    }
+  "description": "Explore some of Sarah's collection of empowering photography sessions showcasing the strength and beauty of women.",
+  "images": [
+    "gallery/IMG_20250708_112344.jpg",
+    "gallery/IMG_20250708_112407_1.jpg",
+    "gallery/IMG_20250708_112407_2.jpg",
+    "gallery/IMG_20250708_112407_3.jpg",
+    "gallery/IMG_20250708_112407_4.jpg",
+    "gallery/IMG_20250708_112407_5.jpg",
+    "gallery/IMG_20250708_112407_6.jpg",
+    "gallery/IMG_20250708_112407_7.jpg",
+    "gallery/IMG_20250708_112407_8.jpg",
+    "gallery/IMG_20250708_112407_9.jpg",
+    "gallery/IMG_20250708_112407_10.jpg",
+    "gallery/IMG_20250708_112407_11.jpg",
+    "gallery/IMG_20250708_112407_12.jpg",
+    "gallery/IMG_20250708_112407_13.jpg"
   ]
 }

@@ -14,11 +14,7 @@
         padding: 6rem 0 3rem;
       }
       
-      #album-view {
-        padding-top: 2rem;
-      }
-      
-      #album-list {
+      #gallery-view {
         padding-top: 2rem;
       }
 
@@ -229,33 +225,13 @@
 
     <main class="gallery-page">
       <div class="container">
-        <div id="album-list">
+        <div id="gallery-view">
           <h1 class="section-title">Photography Gallery</h1>
-          <p class="section-subtitle">
-            Explore our collection of empowering photography sessions showcasing
-            the strength and beauty of women.
+          <p id="gallery-description" class="section-subtitle">
+            <!-- Description will be loaded here -->
           </p>
-          <div class="album-grid" id="albums-container">
-            <!-- Albums will be loaded here -->
-          </div>
-        </div>
-
-        <div id="album-view" class="hidden">
-          <h1 id="album-title" class="section-title"></h1>
-          <div id="album-details">
-            <p id="album-date" class="album-date"></p>
-            <p id="album-description" class="album-description"></p>
-            <a href="#" class="back-btn" onclick="showAlbumList()"
-              >&larr; Back to Albums</a
-            >
-          </div>
           <div class="image-gallery" id="images-container">
             <!-- Images will be loaded here -->
-          </div>
-          <div style="text-align: center; margin-top: 3rem;">
-            <a href="#" class="back-btn" onclick="showAlbumList()"
-              >&larr; Back to Albums</a
-            >
           </div>
         </div>
       </div>
@@ -288,67 +264,28 @@
         .then((response) => response.json())
         .then((data) => {
           galleryData = data;
-          displayAlbums();
+          displayGallery();
         })
         .catch((error) => {
           console.error("Error loading gallery data:", error);
         });
 
-      function displayAlbums() {
-        const albumsContainer = document.getElementById("albums-container");
-        albumsContainer.innerHTML = "";
+      function displayGallery() {
+        // Set description
+        document.getElementById("gallery-description").textContent = galleryData.description;
 
-        galleryData.albums.forEach((album) => {
-          const albumCard = document.createElement("div");
-          albumCard.className = "album-card";
-          albumCard.style.cursor = "pointer";
-          albumCard.onclick = () => showAlbum(album.id);
-          albumCard.innerHTML = `
-            <div class="album-cover">
-              <img src="${album.images[0]}" alt="${album.name}" onerror="this.src='images/placeholder.jpg'">
-            </div>
-            <div class="album-info">
-              <h3 class="album-title">${album.name}</h3>
-              <p class="album-date">Shot on ${album.shootDate}</p>
-              <p class="album-description">${album.description}</p>
-              <p class="album-count">${album.images.length} images</p>
-              <a href="#" class="album-btn" onclick="event.stopPropagation(); showAlbum('${album.id}')">View Album</a>
-            </div>
-          `;
-          albumsContainer.appendChild(albumCard);
-        });
-      }
-
-      function showAlbum(albumId) {
-        const album = galleryData.albums.find((a) => a.id === albumId);
-        if (!album) return;
-
-        document.getElementById("album-list").classList.add("hidden");
-        document.getElementById("album-view").classList.remove("hidden");
-
-        document.getElementById("album-title").textContent = album.name;
-        document.getElementById(
-          "album-date"
-        ).textContent = `Shot on ${album.shootDate}`;
-        document.getElementById("album-description").textContent =
-          album.description;
-
+        // Load images
         const imagesContainer = document.getElementById("images-container");
         imagesContainer.innerHTML = "";
 
-        album.images.forEach((imagePath) => {
+        galleryData.images.forEach((imagePath) => {
           const imageItem = document.createElement("div");
           imageItem.className = "image-item";
           imageItem.innerHTML = `
-            <img src="${imagePath}" alt="${album.name}" onclick="openModal('${imagePath}')" onerror="this.src='images/placeholder.jpg'">
+            <img src="${imagePath}" alt="Gallery image" onclick="openModal('${imagePath}')" onerror="this.src='images/placeholder.jpg'">
           `;
           imagesContainer.appendChild(imageItem);
         });
-      }
-
-      function showAlbumList() {
-        document.getElementById("album-view").classList.add("hidden");
-        document.getElementById("album-list").classList.remove("hidden");
       }
 
       function openModal(imagePath) {
