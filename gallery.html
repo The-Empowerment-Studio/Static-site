@@ -13,7 +13,7 @@
       .gallery-page {
         padding: 6rem 0 3rem;
       }
-      
+
       #gallery-view {
         padding-top: 2rem;
       }
@@ -200,16 +200,18 @@
     <header class="header">
       <nav class="nav">
         <div class="logo">
-          <img
-            src="images/logo.png"
-            alt="The Empowerment Studio"
-            class="logo-img"
-          />
+          <a href="index.html">
+            <img
+              src="images/logo.png"
+              alt="The Empowerment Studio"
+              class="logo-img"
+          /></a>
         </div>
         <ul class="nav-menu">
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#services">Services</a></li>
           <li><a href="schedule.html">Classes</a></li>
+          <li><a href="index.html#studio">Studio</a></li>
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="index.html#our-photographer">Photographers</a></li>
           <li><a href="index.html#about">About</a></li>
@@ -272,7 +274,8 @@
 
       function displayGallery() {
         // Set description
-        document.getElementById("gallery-description").textContent = galleryData.description;
+        document.getElementById("gallery-description").textContent =
+          galleryData.description;
 
         // Load images
         const imagesContainer = document.getElementById("images-container");
