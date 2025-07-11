@@ -154,6 +154,21 @@ document.addEventListener("DOMContentLoaded", function () {
       classesForDay.forEach((classInfo) => {
         const classElement = document.createElement("div");
         classElement.className = "class-item";
+        
+        let signupLinkHtml = '';
+        // Check if the class is in the past
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const isPast = dayDate < today;
+        
+        if (!isPast) {
+          if (classInfo.signupLink) {
+            signupLinkHtml = '<div class="class-signup-link">Signup Now</div>';
+          } else if (window.innerWidth > 768) {
+            signupLinkHtml = '<div class="class-signup-link">More info</div>';
+          }
+        }
+        
         classElement.innerHTML = `
                     <div class="class-time">${formatTime(
                       classInfo.startTime
@@ -162,13 +177,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="class-instructor">${
                       classInfo.instructorName
                     }</div>
+                    ${signupLinkHtml}
                 `;
 
-        // Add click event for desktop modal (only on desktop)
-        if (window.innerWidth > 768) {
+        // Add click event for desktop modal (only on desktop and not past)
+        if (window.innerWidth > 768 && !isPast) {
           classElement.style.cursor = "pointer";
           classElement.addEventListener("click", () => {
-            openModal(classInfo, dayDate);
+            if (classInfo.signupLink) {
+              window.open(classInfo.signupLink, '_blank');
+            } else {
+              openModal(classInfo, dayDate);
+            }
           });
         }
 
@@ -220,11 +240,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
+      const isPast = classInfo.date < today;
 
-      if (classInfo.date < today) {
+      if (isPast) {
         classCard.classList.add("past");
       }
 
+      let signupLinkHtml = '';
+      if (classInfo.signupLink && !isPast) {
+        signupLinkHtml = '<div class="week-class-signup">Signup Now</div>';
+      }
+      
       classCard.innerHTML = `
                 <div class="week-class-day">${classInfo.dayName}, ${formatDate(
         classInfo.date
@@ -245,7 +271,16 @@ document.addEventListener("DOMContentLoaded", function () {
                       classInfo.minimumAgeLimit
                     }</div>
                 </div>
+                ${signupLinkHtml}
             `;
+
+      // Add click event for mobile signup (only if not past)
+      if (classInfo.signupLink && !isPast) {
+        classCard.style.cursor = "pointer";
+        classCard.addEventListener("click", () => {
+          window.open(classInfo.signupLink, '_blank');
+        });
+      }
 
       weekClasses.appendChild(classCard);
     });
