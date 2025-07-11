@@ -1,3 +1,6 @@
+const scheduleLink =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSh9ZK8fAuFuCo8MUUuK0Xrtlwt-tN0l-bPhh4AKPRSzMuJmykNd_XxGF6wqa77eaxtTE7eoY5z3Vh4/pub?output=csv";
+
 // Simplified Schedule Calendar
 document.addEventListener("DOMContentLoaded", function () {
   const currentDate = new Date();
@@ -20,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let classes = [];
   let currentWeekStart = null;
 
+  /*
   // Load classes from JSON
   fetch("schedule.json")
     .then((response) => response.json())
@@ -32,7 +36,57 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Error loading classes:", error);
       document.getElementById("calendar").innerHTML =
         '<p style="text-align: center; padding: 2rem;">Error loading schedule</p>';
+    });*/
+
+  Papa.parse(scheduleLink, {
+    download: true,
+    header: true,
+    complete: showInfo,
+  });
+
+  function newKeyFrom(key) {
+    return key.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
+      if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+      return index === 0 ? match.toLowerCase() : match.toUpperCase();
     });
+  }
+
+  function getValueFrom(value) {
+    if (typeof value === "string") {
+      value = value.trim();
+    }
+    if (value === undefined || value === null || value === "") {
+      return null;
+    }
+    if (/true|yes/i.test(value)) {
+      return true;
+    }
+    if (/false|no/i.test(value)) {
+      return false;
+    }
+    return value;
+  }
+
+  function mapResultsItem(item) {
+    const keys = Object.keys(item);
+    const mappedItem = {};
+    keys.forEach((key) => {
+      const newKey = newKeyFrom(key);
+      const value = getValueFrom(item[key]);
+      if (value) {
+        mappedItem[newKey] = value;
+      }
+    });
+    return mappedItem;
+  }
+
+  function showInfo(results) {
+    const data = results.data;
+    classes = data.map(mapResultsItem);
+    console.log(classes);
+    renderCalendar();
+    renderWeekView();
+  }
 
   function getMonday(d) {
     d = new Date(d);
