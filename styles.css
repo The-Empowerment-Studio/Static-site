@@ -867,6 +867,57 @@ h1, h2, h3 {
     text-decoration: underline;
 }
 
+/* Legal Forms Section */
+.legal-forms-section {
+    padding: 5rem 0;
+    background: #f8f8f8;
+}
+
+.forms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.form-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-left: 4px solid #D4A574;
+    transition: all 0.3s ease;
+}
+
+.form-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.form-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.form-card h3 {
+    color: #2c2c2c;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.form-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.form-card .btn {
+    margin-top: 1rem;
+}
+
 /* Footer */
 .footer {
     background: #2c2c2c;
